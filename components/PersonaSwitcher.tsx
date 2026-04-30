@@ -24,23 +24,32 @@ export default function PersonaSwitcher({ activeId, onChange }: Props) {
             aria-selected={active}
             onClick={() => onChange(id)}
             className={[
-              "flex-1 min-w-[8rem] rounded-lg px-3 py-2 text-sm font-medium transition-all",
+              "flex-1 min-w-[8rem] rounded-lg px-3 py-2 text-sm font-semibold transition-all",
               "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1",
               active
-                ? `${p.accentClass} shadow-md`
-                : "bg-transparent text-slate-700 hover:bg-slate-100",
+                ? `${p.accentClass} shadow-md ring-2 ring-offset-1 ${p.ringClass}`
+                : "bg-transparent text-slate-800 hover:bg-slate-100",
             ].join(" ")}
           >
             <div className="flex items-center justify-center gap-2">
               <span
                 className={[
-                  "flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold",
-                  active ? "bg-white/20 text-white" : `${p.accentClass}`,
+                  "flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold",
+                  active
+                    ? "bg-white text-slate-900"
+                    : `${p.accentClass}`,
                 ].join(" ")}
               >
                 {p.avatarInitials}
               </span>
-              <span className="truncate">{p.name.split(" ")[0]}</span>
+              <span
+                className={[
+                  "truncate",
+                  active ? "text-white" : "text-slate-800",
+                ].join(" ")}
+              >
+                {p.name.split(" ")[0]}
+              </span>
             </div>
           </button>
         );
