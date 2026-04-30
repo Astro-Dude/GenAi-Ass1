@@ -19,22 +19,81 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar styling for chat area */
-.chat-scroll::-webkit-scrollbar {
-  width: 8px;
-}
-.chat-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-.chat-scroll::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.3);
-  border-radius: 4px;
-}
-.chat-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.5);
+/* ---------- Cool chat-area scrollbar ----------
+ * - Thin (6px), fully rounded thumb
+ * - Glassy gradient thumb with subtle inner highlight
+ * - Track is a faint inset rail so the chat box doesn't feel naked when empty
+ * - Stable gutter so the message column doesn't shift when overflow toggles
+ * - Smooth color shift on hover/active
+ * - Firefox uses scrollbar-color (no gradient support there, so we pick a tasteful solid)
+ */
+.chat-scroll {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.45) transparent;
 }
 
-/* Auto-resize textarea hides default scrollbar until needed */
+.chat-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.chat-scroll::-webkit-scrollbar-track {
+  background: linear-gradient(
+    180deg,
+    rgba(148, 163, 184, 0.05) 0%,
+    rgba(148, 163, 184, 0.12) 50%,
+    rgba(148, 163, 184, 0.05) 100%
+  );
+  border-radius: 999px;
+  margin: 6px 0;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(99, 102, 241, 0.55) 0%,
+    rgba(168, 85, 247, 0.55) 100%
+  );
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  transition: background 200ms ease;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(79, 70, 229, 0.85) 0%,
+    rgba(147, 51, 234, 0.85) 100%
+  );
+  background-clip: padding-box;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(
+    180deg,
+    rgba(67, 56, 202, 1) 0%,
+    rgba(126, 34, 206, 1) 100%
+  );
+  background-clip: padding-box;
+}
+
+/* Textarea uses the same thin Firefox scrollbar style */
 textarea {
   scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+}
+textarea::-webkit-scrollbar {
+  width: 6px;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.45);
+  border-radius: 999px;
+}
+textarea::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.65);
 }

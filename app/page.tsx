@@ -100,7 +100,7 @@ export default function HomePage() {
   }
 
   return (
-    <main className="mx-auto flex min-h-[100dvh] w-full max-w-3xl flex-col px-3 py-4 sm:px-5 sm:py-6">
+    <main className="mx-auto flex w-full max-w-3xl flex-col px-3 py-4 sm:px-5 sm:py-6">
       {/* Header */}
       <header className="mb-3 flex flex-col gap-1 sm:mb-4">
         <div className="flex items-center justify-between">
@@ -161,7 +161,7 @@ export default function HomePage() {
       {/* Chat area */}
       <section
         ref={scrollRef}
-        className="chat-scroll mt-3 flex-1 overflow-y-auto rounded-xl border border-slate-200 bg-white/60 p-3 shadow-sm backdrop-blur sm:p-4"
+        className="chat-scroll mt-3 h-[clamp(300px,50vh,520px)] overflow-y-auto rounded-xl border border-slate-200 bg-white/60 p-3 shadow-sm backdrop-blur sm:p-4"
         aria-label={`Conversation with ${persona.name}`}
       >
         {messages.length === 0 ? (
